@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 
 const reasons = [
   '遇i就e，遇e就i的宝宝',
