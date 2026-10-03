@@ -413,23 +413,8 @@ function App() {
                 key={index}
               />
             ))}
-            <span className="wind-chime">
-              <img className="wind-chime-art" src="/wind-chime-complete.png" alt="" />
-            </span>
-          </div>
+</div>
           <div className="home-lace-frame" aria-hidden="true">
-            <span className="ribbon-edge ribbon-edge-top" />
-            <span className="ribbon-edge ribbon-edge-right" />
-            <span className="ribbon-edge ribbon-edge-bottom" />
-            <span className="ribbon-edge ribbon-edge-left" />
-            <img className="ribbon-piece ribbon-piece-tl" src="/ribbon-corner-tl.png" alt="" />
-            <img className="ribbon-piece ribbon-piece-tr" src="/ribbon-corner-tr.png" alt="" />
-            <img className="ribbon-piece ribbon-piece-bl" src="/ribbon-corner-tl.png" alt="" />
-            <img className="ribbon-piece ribbon-piece-br" src="/ribbon-corner-tr.png" alt="" />
-            <img className="ribbon-piece ribbon-piece-bow-left" src="/ribbon-bow.png" alt="" />
-            <img className="ribbon-piece ribbon-piece-bow-right" src="/ribbon-bow.png" alt="" />
-            <img className="ribbon-piece ribbon-piece-streamer-left" src="/ribbon-streamer.png" alt="" />
-            <img className="ribbon-piece ribbon-piece-streamer-right" src="/ribbon-streamer.png" alt="" />
           </div>
           <div className="mascot-row">
             <img className="mascot-sticker" src="/pochacco-sticker.png" alt="" />

@@ -276,77 +276,13 @@ code {
 .home-lace-frame {
   position: absolute;
   z-index: 3;
-  inset: 11px;
-  border: 0;
-  border-radius: 27px;
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, .72),
-    0 0 0 1px rgba(229, 146, 171, .2);
+  inset: -8px;
+  border-style: solid;
+  border-width: 118px 120px 124px 112px;
+  border-image: url('/pink-frame.png') 470 500 540 400 / 118px 120px 124px 112px stretch;
+  filter: drop-shadow(0 3px 5px rgba(166, 67, 101, .16));
   pointer-events: none;
 }
-
-.home-lace-frame::before {
-  position: absolute;
-  inset: 27px;
-  border: 1px solid rgba(224, 157, 173, .36);
-  border-radius: 13px;
-  background:
-    repeating-linear-gradient(45deg, rgba(220, 177, 184, .055) 0 1px, transparent 1px 5px),
-    repeating-linear-gradient(-45deg, rgba(220, 177, 184, .05) 0 1px, transparent 1px 5px);
-  opacity: .8;
-  content: '';
-}
-
-.ribbon-edge {
-  position: absolute;
-  display: block;
-  border-radius: 6px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, .93) 0%, rgba(255, 255, 255, .45) 22%, transparent 50%, rgba(186, 88, 120, .16) 100%),
-    linear-gradient(100deg, #e8a1b7 0%, #fff0f4 15%, #e99bb2 34%, #fff6f8 54%, #e48da8 76%, #f9dbe3 100%);
-  box-shadow: 0 2px 6px rgba(166, 67, 101, .16), inset 0 1px 2px rgba(255, 255, 255, .95), inset 0 -1px 2px rgba(178, 78, 111, .2);
-}
-
-.ribbon-edge-top,
-.ribbon-edge-bottom {
-  right: 0;
-  left: 0;
-  height: 11px;
-}
-
-.ribbon-edge-top { top: 0; }
-.ribbon-edge-bottom { bottom: 0; }
-
-.ribbon-edge-left,
-.ribbon-edge-right {
-  top: 0;
-  bottom: 0;
-  width: 11px;
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, .93) 0%, rgba(255, 255, 255, .45) 22%, transparent 50%, rgba(186, 88, 120, .16) 100%),
-    linear-gradient(10deg, #e8a1b7 0%, #fff0f4 15%, #e99bb2 34%, #fff6f8 54%, #e48da8 76%, #f9dbe3 100%);
-}
-
-.ribbon-edge-left { left: 0; }
-.ribbon-edge-right { right: 0; }
-
-.ribbon-piece {
-  position: absolute;
-  z-index: 1;
-  display: block;
-  height: auto;
-  filter: drop-shadow(0 3px 4px rgba(166, 67, 101, .22));
-}
-
-.ribbon-piece-tl { top: -14px; left: -14px; width: clamp(110px, 15vw, 190px); }
-.ribbon-piece-tr { top: -14px; right: -14px; width: clamp(110px, 15vw, 190px); }
-.ribbon-piece-bl { bottom: -14px; left: -14px; width: clamp(110px, 15vw, 190px); transform: scaleY(-1); }
-.ribbon-piece-br { right: -14px; bottom: -14px; width: clamp(110px, 15vw, 190px); transform: scaleY(-1); }
-.ribbon-piece-bow-left { top: 40%; left: -18px; width: clamp(44px, 5vw, 64px); transform: rotate(-18deg); }
-.ribbon-piece-bow-right { right: -18px; bottom: 30%; width: clamp(44px, 5vw, 64px); transform: scaleX(-1) rotate(-18deg); }
-.ribbon-piece-streamer-left { bottom: 6%; left: -10px; width: clamp(34px, 4vw, 52px); transform: rotate(8deg); }
-.ribbon-piece-streamer-right { top: 24%; right: -10px; width: clamp(34px, 4vw, 52px); transform: scaleX(-1) rotate(8deg); }
-
 .cover-garden {
   position: absolute;
   z-index: 2;
@@ -390,21 +326,6 @@ code {
 .falling-petal-17 { --petal-left: 39%; --petal-start: -55%; --petal-width: 8px; --petal-height: 12px; --petal-duration: 18s; --petal-delay: -8s; opacity: .48; }
 .falling-petal-18 { --petal-left: 88%; --petal-start: -61%; --petal-width: 9px; --petal-height: 13px; --petal-duration: 17s; --petal-delay: -16s; opacity: .48; }
 
-.wind-chime {
-  position: absolute;
-  top: -8px;
-  right: 18px;
-  width: clamp(88px, 10vw, 124px);
-  transform-origin: 52% 3%;
-  animation: chimeSway 5.5s ease-in-out infinite;
-}
-
-.wind-chime-art {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
 @keyframes petalFall {
   0% {
     top: var(--petal-start);
@@ -422,11 +343,6 @@ code {
   }
 }
 
-@keyframes chimeSway {
-  0%, 100% { transform: rotate(-2deg); }
-  50% { transform: rotate(2deg); }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .falling-petal {
     animation: none;
@@ -439,10 +355,6 @@ code {
   .falling-petal-3 { --petal-rest: 49%; }
   .falling-petal-4 { --petal-rest: 67%; }
   .falling-petal-5 { --petal-rest: 84%; }
-
-  .wind-chime {
-    animation: none;
-  }
 
   .wish-meteor {
     animation: none;
@@ -2740,23 +2652,10 @@ code {
     }
 
     .home-lace-frame {
-      inset: 9px;
-      border-radius: 21px;
+      inset: -6px;
+      border-width: 70px 62px 74px 60px;
+      border-image-width: 70px 62px 74px 60px;
     }
-
-    .home-lace-frame::before {
-      inset: 23px;
-      border-radius: 12px;
-    }
-
-
-    .wind-chime {
-      top: 0;
-      right: 5px;
-      width: clamp(82px, 23vw, 112px);
-      transform-origin: 52% 3%;
-    }
-
     .mascot-row {
       width: min(100%, 240px);
       min-height: 175px;
