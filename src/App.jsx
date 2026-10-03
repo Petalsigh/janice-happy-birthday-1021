@@ -432,95 +432,35 @@ function App() {
           </div>
           <div className="mascot-row">
             <img className="mascot-sticker" src="/pochacco-sticker.png" alt="" />
-            <span className="cover-age" aria-label="十八岁">
-              <svg className="cover-ribbon-age" viewBox="0 0 390 250" aria-hidden="true">
-                <defs>
-                  <linearGradient id="satin-ribbon" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stopColor="#f8d8e0" />
-                    <stop offset=".2" stopColor="#fffafd" />
-                    <stop offset=".42" stopColor="#e8a4b8" />
-                    <stop offset=".57" stopColor="#fff5f7" />
-                    <stop offset=".78" stopColor="#df8fa8" />
-                    <stop offset="1" stopColor="#f7dce3" />
-                  </linearGradient>
-                  <linearGradient id="satin-ribbon-highlight" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stopColor="#fff" stopOpacity=".9" />
-                    <stop offset=".48" stopColor="#fff" stopOpacity=".12" />
-                    <stop offset=".78" stopColor="#a84d6e" stopOpacity=".18" />
-                    <stop offset="1" stopColor="#fff" stopOpacity=".45" />
-                  </linearGradient>
-                  <linearGradient id="satin-ribbon-fold" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0" stopColor="#bd6c86" stopOpacity=".16" />
-                    <stop offset=".46" stopColor="#fff" stopOpacity=".82" />
-                    <stop offset="1" stopColor="#bd6c86" stopOpacity=".2" />
-                  </linearGradient>
-                </defs>
-                <g className="ribbon-age-shadow" fill="none" stroke="#8d4960" strokeOpacity=".18" strokeWidth="23" strokeLinecap="butt" strokeLinejoin="round">
-                  <path className="ribbon-age-one" d="M80 72 111 42 132 42 132 200" />
-                  <path d="M247 111C216 104 199 91 200 69 201 47 220 34 248 34 277 34 295 48 296 69 297 90 277 103 247 111" />
-                  <path d="M247 111C278 119 299 137 299 161 299 188 279 205 249 205 218 205 197 188 197 163 197 139 217 120 247 111" />
-                </g>
-                <g fill="none" stroke="rgba(255,255,255,.58)" strokeWidth="23" strokeLinecap="butt" strokeLinejoin="round">
-                  <path className="ribbon-age-one" d="M80 72 111 42 132 42 132 200" />
-                  <path d="M247 111C216 104 199 91 200 69 201 47 220 34 248 34 277 34 295 48 296 69 297 90 277 103 247 111" />
-                  <path d="M247 111C278 119 299 137 299 161 299 188 279 205 249 205 218 205 197 188 197 163 197 139 217 120 247 111" />
-                </g>
-                <g fill="none" stroke="url(#satin-ribbon)" strokeWidth="27" strokeLinecap="butt" strokeLinejoin="round">
-                  <path className="ribbon-age-one" d="M80 72 111 42 132 42 132 200" />
-                  <path d="M247 111C216 104 199 91 200 69 201 47 220 34 248 34 277 34 295 48 296 69 297 90 277 103 247 111" />
-                  <path d="M247 111C278 119 299 137 299 161 299 188 279 205 249 205 218 205 197 188 197 163 197 139 217 120 247 111" />
-                </g>
-                <g className="ribbon-age-crossing" fill="none" stroke="url(#satin-ribbon)" strokeWidth="21" strokeLinecap="butt" strokeLinejoin="round">
-                  <path d="M229 101C235 105 242 108 249 111 256 114 263 118 269 123" />
-                </g>
-                <g className="ribbon-age-folds" fill="none" stroke="url(#satin-ribbon-fold)" strokeLinecap="round">
-                  <path strokeWidth="9" d="M89 63 111 42 132 42 132 78M132 151 132 190" />
-                  <path strokeWidth="7" d="M222 45C231 39 240 37 250 38M290 151C289 167 280 179 267 186" />
-                  <path strokeWidth="9" d="M218 184C226 195 238 200 250 200M246 111C255 114 262 118 269 123" />
-                </g>
-                <g fill="none" stroke="url(#satin-ribbon-highlight)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M83 68 111 45 128 45 128 194" />
-                  <path d="M205 68C207 49 224 39 248 39 272 39 289 51 290 69 291 84 278 96 260 103M202 162C202 141 221 124 239 117M203 164C203 185 221 199 245 201" />
-                </g>
-                <g fill="none" stroke="#fff" strokeOpacity=".54" strokeWidth="1.5" strokeLinecap="round">
-                  <path d="M83 68 111 44M138 52 138 190" />
-                  <path d="M218 49C228 42 239 41 248 42M289 154C286 168 277 178 266 184M220 184C228 193 237 196 246 197" />
-                </g>
-                <path className="ribbon-age-tail ribbon-age-tail-two" d="M238 204 261 199 285 236 258 229Z" />
-                <path className="ribbon-age-tail-fold ribbon-age-tail-fold-two" d="M238 204 251 207 285 236 258 229Z" />
-              </svg>
-              <span className="cover-eight">
-                <span className="mascot-like-area">
-                  <button
-                    className={`mascot-heart${isLiked ? ' is-liked' : ''}`}
-                    type="button"
-                    onClick={() => {
-                      const nextIsLiked = !isLiked;
-                      setIsLiked(nextIsLiked);
-                      if (nextIsLiked) setLikeBurst((burst) => burst + 1);
-                    }}
-                    aria-label={isLiked ? '取消喜欢' : '点赞帕恰狗'}
-                    aria-pressed={isLiked}
-                    title={isLiked ? '取消喜欢' : '喜欢'}
-                    data-testid="mascot-like-button"
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 5.95 10.95 4.9a5.5 5.5 0 0 0-7.8 7.78l1.06 1.06L12 21.5l7.79-7.76 1.06-1.06a5.5 5.5 0 0 0-.05-7.78Z" />
-                    </svg>
-                  </button>
-                  {likeBurst > 0 && (
-                    <span className="like-burst" key={likeBurst}>
-                      {Array.from({ length: 7 }, (_, index) => (
-                        <span key={index} className={`burst-heart burst-heart-${index + 1}`}>♥</span>
-                      ))}
-                    </span>
-                  )}
+            <span className="mascot-like-area">
+              <button
+                className={`mascot-heart${isLiked ? ' is-liked' : ''}`}
+                type="button"
+                onClick={() => {
+                  const nextIsLiked = !isLiked;
+                  setIsLiked(nextIsLiked);
+                  if (nextIsLiked) setLikeBurst((burst) => burst + 1);
+                }}
+                aria-label={isLiked ? '取消喜欢' : '点赞帕恰狗'}
+                aria-pressed={isLiked}
+                title={isLiked ? '取消喜欢' : '喜欢'}
+                data-testid="mascot-like-button"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 5.95 10.95 4.9a5.5 5.5 0 0 0-7.8 7.78l1.06 1.06L12 21.5l7.79-7.76 1.06-1.06a5.5 5.5 0 0 0-.05-7.78Z" />
+                </svg>
+              </button>
+              {likeBurst > 0 && (
+                <span className="like-burst" key={likeBurst}>
+                  {Array.from({ length: 7 }, (_, index) => (
+                    <span key={index} className={`burst-heart burst-heart-${index + 1}`}>♥</span>
+                  ))}
                 </span>
-              </span>
-            </span>
+              )}
+                </span>
           </div>
           <div className="cover-heading">
-            <p className="home-eyebrow">THE BIRTHDAY EDITION</p>
+            <p className="home-eyebrow">THE BIRTHDAY EDITION <span>·</span> NO. 18</p>
             <div className="cover-name-ribbon">
               <h1 className="home-title" id="home-heading">To Janice<img className="title-crown" src="/birthday-crown.png" alt="" aria-hidden="true" /></h1>
               <span className="title-ribbon" aria-hidden="true">
