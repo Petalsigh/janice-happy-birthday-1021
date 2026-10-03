@@ -522,7 +522,7 @@ function App() {
           <div className="cover-heading">
             <p className="home-eyebrow">THE BIRTHDAY EDITION <span>·</span> NO. 18</p>
             <div className="cover-name-ribbon">
-              <h1 className="home-title" id="home-heading">To Janice</h1>
+              <h1 className="home-title" id="home-heading">To Janice<img className="title-crown" src="/birthday-crown.png" alt="" aria-hidden="true" /></h1>
               <span className="title-ribbon" aria-hidden="true">
                 <svg className="title-ribbon-bow" viewBox="0 0 64 58">
                   <defs>
