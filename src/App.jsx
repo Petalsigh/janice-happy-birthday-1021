@@ -520,7 +520,7 @@ function App() {
             </span>
           </div>
           <div className="cover-heading">
-            <p className="home-eyebrow">THE BIRTHDAY EDITION <span>·</span> NO. 18</p>
+            <p className="home-eyebrow">THE BIRTHDAY EDITION</p>
             <div className="cover-name-ribbon">
               <h1 className="home-title" id="home-heading">To Janice<img className="title-crown" src="/birthday-crown.png" alt="" aria-hidden="true" /></h1>
               <span className="title-ribbon" aria-hidden="true">
