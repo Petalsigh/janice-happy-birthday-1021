@@ -93,7 +93,7 @@ describe('Birthday homepage and interactive pages', () => {
     fireEvent.click(screen.getByRole('button', { name: '翻到信封背面' }));
     expect(screen.getByRole('button', { name: '打开信封' })).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: '打开信封' }));
-    expect(screen.getByText(/等你把想写的内容发给我/)).toBeInTheDocument();
+    expect(screen.getByText(/已经认识芯芯宝贝九个月24天/)).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: '返回首页' }));
 
     fireEvent.click(screen.getByRole('button', { name: /祝福/ }));

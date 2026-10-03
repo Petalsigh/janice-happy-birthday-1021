@@ -2185,6 +2185,8 @@ code {
   width: min(88vw, 680px);
   max-width: none;
   min-height: 84%;
+  max-height: 84%;
+  overflow-y: auto;
   padding: clamp(38px, 8vw, 76px);
   background-color: #fff4f7;
   background-image: url('/letter-stars.png');
