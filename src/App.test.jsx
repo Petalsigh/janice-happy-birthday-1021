@@ -8,7 +8,8 @@ describe('Birthday homepage and interactive pages', () => {
 
     expect(screen.getByRole('heading', { name: 'To Janice' })).toBeInTheDocument();
     expect(screen.getByText('1021')).toBeInTheDocument();
-    expect(document.querySelector('.home-lace-frame')).toBeInTheDocument();
+    expect(document.querySelectorAll('.home-lace-frame .ribbon-edge')).toHaveLength(4);
+    expect(document.querySelectorAll('.home-lace-frame .ribbon-piece')).toHaveLength(4);
     expect(document.querySelector('.wind-chime')).not.toBeInTheDocument();
     expect(document.querySelectorAll('.home-menu-item .menu-bow')).toHaveLength(4);
     expect(document.querySelectorAll('.home-menu-item .menu-arrow')).toHaveLength(0);

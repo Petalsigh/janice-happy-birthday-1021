@@ -415,6 +415,14 @@ function App() {
             ))}
 </div>
           <div className="home-lace-frame" aria-hidden="true">
+            <span className="ribbon-edge ribbon-edge-top" />
+            <span className="ribbon-edge ribbon-edge-right" />
+            <span className="ribbon-edge ribbon-edge-bottom" />
+            <span className="ribbon-edge ribbon-edge-left" />
+            <img className="ribbon-piece ribbon-piece-tl" src="/ribbon-corner-tl.png" alt="" />
+            <img className="ribbon-piece ribbon-piece-tr" src="/ribbon-corner-tr.png" alt="" />
+            <img className="ribbon-piece ribbon-piece-bow" src="/ribbon-bow.png" alt="" />
+            <img className="ribbon-piece ribbon-piece-streamer" src="/ribbon-streamer.png" alt="" />
           </div>
           <div className="mascot-row">
             <img className="mascot-sticker" src="/pochacco-sticker.png" alt="" />
