@@ -3192,8 +3192,8 @@ code {
 .title-crown {
   position: absolute;
   z-index: 2;
-  top: .08em;
-  right: -.14em;
+  top: -.3em;
+  right: -.2em;
   width: .56em;
   height: auto;
   filter: drop-shadow(0 2px 3px rgba(165, 71, 106, .3));
