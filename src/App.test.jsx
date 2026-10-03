@@ -9,9 +9,8 @@ describe('Birthday homepage and interactive pages', () => {
     expect(screen.getByRole('heading', { name: 'To Janice' })).toBeInTheDocument();
     expect(screen.getByText('1021')).toBeInTheDocument();
     expect(document.querySelector('.wind-chime-art')).toHaveAttribute('src', '/wind-chime-complete.png');
-    expect(document.querySelectorAll('.home-lace-frame .lace-edge')).toHaveLength(4);
-    expect(document.querySelectorAll('.home-lace-frame .pearl-strand')).toHaveLength(2);
-    expect(document.querySelectorAll('.home-lace-frame .coquette-bow')).toHaveLength(3);
+    expect(document.querySelectorAll('.home-lace-frame .ribbon-edge')).toHaveLength(4);
+    expect(document.querySelectorAll('.home-lace-frame .ribbon-piece')).toHaveLength(8);
     expect(document.querySelectorAll('.home-menu-item .menu-bow')).toHaveLength(4);
     expect(document.querySelectorAll('.home-menu-item .menu-arrow')).toHaveLength(0);
     expect(document.querySelector('.cover-ribbon-age')).not.toBeInTheDocument();

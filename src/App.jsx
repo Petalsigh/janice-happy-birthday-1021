@@ -418,17 +418,18 @@ function App() {
             </span>
           </div>
           <div className="home-lace-frame" aria-hidden="true">
-            <span className="lace-edge lace-edge-top" />
-            <span className="lace-edge lace-edge-right" />
-            <span className="lace-edge lace-edge-bottom" />
-            <span className="lace-edge lace-edge-left" />
-            <span className="pearl-strand pearl-strand-left" />
-            <span className="pearl-strand pearl-strand-right" />
-            <span className="lace-rose lace-rose-upper">✿</span>
-            <span className="lace-rose lace-rose-lower">✿</span>
-            <span className="coquette-bow home-bow-top"><i /></span>
-            <span className="coquette-bow home-bow-left"><i /></span>
-            <span className="coquette-bow home-bow-right"><i /></span>
+            <span className="ribbon-edge ribbon-edge-top" />
+            <span className="ribbon-edge ribbon-edge-right" />
+            <span className="ribbon-edge ribbon-edge-bottom" />
+            <span className="ribbon-edge ribbon-edge-left" />
+            <img className="ribbon-piece ribbon-piece-tl" src="/ribbon-corner-tl.png" alt="" />
+            <img className="ribbon-piece ribbon-piece-tr" src="/ribbon-corner-tr.png" alt="" />
+            <img className="ribbon-piece ribbon-piece-bl" src="/ribbon-corner-tl.png" alt="" />
+            <img className="ribbon-piece ribbon-piece-br" src="/ribbon-corner-tr.png" alt="" />
+            <img className="ribbon-piece ribbon-piece-bow-left" src="/ribbon-bow.png" alt="" />
+            <img className="ribbon-piece ribbon-piece-bow-right" src="/ribbon-bow.png" alt="" />
+            <img className="ribbon-piece ribbon-piece-streamer-left" src="/ribbon-streamer.png" alt="" />
+            <img className="ribbon-piece ribbon-piece-streamer-right" src="/ribbon-streamer.png" alt="" />
           </div>
           <div className="mascot-row">
             <img className="mascot-sticker" src="/pochacco-sticker.png" alt="" />
