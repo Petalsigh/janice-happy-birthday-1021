@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+
+const asset = (path) => `${import.meta.env.BASE_URL}${path}`;
 
 const reasons = [
   '遇i就e，遇e就i的宝宝',
@@ -22,10 +24,10 @@ const reasons = [
 ];
 
 const pages = {
-  memories: { label: '回忆', note: '和你幸福的每一帧都难忘', sticker: '/pochacco-ruby.png' },
-  reasons: { label: '十八', note: '世界不过是一个蓝色的蛋糕，我们会和同样柔软的人越过时间，以火焰相见。', sticker: '/pochacco-reasons.png' },
-  letter: { label: '信笺', note: '生日快乐宝宝', sticker: '/pochacco-letter.png' },
-  wishes: { label: '祝福', note: '愿岁岁年年，你都被温柔与欢喜拥抱', sticker: '/pochacco-wishes-pillow-cutout.png' },
+  memories: { label: '和你', note: '和你幸福的每一帧都难忘', sticker: asset('pochacco-ruby.png') },
+  reasons: { label: '十八', note: '世界不过是一个蓝色的蛋糕，我们会和同样柔软的人越过时间，以火焰相见。', sticker: asset('pochacco-reasons.png') },
+  letter: { label: '信笺', note: '铃兰的花语是幸福归来', sticker: asset('pochacco-letter.png') },
+  wishes: { label: '祝福', note: '愿岁岁年年，你都被温柔与欢喜拥抱', sticker: asset('pochacco-wishes-pillow-cutout.png') },
 };
 
 const pageComponents = {
@@ -45,24 +47,24 @@ function VinylPage() {
         <div className="ruby-cover-art">
           <img
             className="ruby-cover-image"
-            src="/ruby-jennie-cover.png"
+            src={asset('ruby-jennie-cover.png')}
             alt="JENNIE《Ruby》专辑封面"
           />
         </div>
         <div className="ruby-floral-border" aria-hidden="true">
-          <img className="ruby-flower ruby-flower-side ruby-flower-side-top" src="/ruby-flower-side.png" alt="" />
-          <img className="ruby-flower ruby-flower-side ruby-flower-side-middle" src="/ruby-flower-corner.png" alt="" />
-          <img className="ruby-flower ruby-flower-side ruby-flower-side-bottom" src="/ruby-flower-bottom.png" alt="" />
-          <img className="ruby-flower ruby-flower-edge ruby-flower-edge-left" src="/ruby-flower-corner.png" alt="" />
-          <img className="ruby-flower ruby-flower-edge ruby-flower-edge-center" src="/ruby-flower-side.png" alt="" />
-          <img className="ruby-flower ruby-flower-edge ruby-flower-edge-right" src="/ruby-flower-corner.png" alt="" />
-          <img className="ruby-flower ruby-flower-fill ruby-flower-fill-one" src="/ruby-flower-accent.png" alt="" />
-          <img className="ruby-flower ruby-flower-fill ruby-flower-fill-two" src="/ruby-flower-bottom.png" alt="" />
-          <img className="ruby-flower ruby-flower-fill ruby-flower-fill-three" src="/ruby-flower-corner.png" alt="" />
-          <img className="ruby-flower ruby-flower-fill ruby-flower-fill-four" src="/ruby-flower-accent.png" alt="" />
+          <img className="ruby-flower ruby-flower-side ruby-flower-side-top" src={asset('ruby-flower-side.png')} alt="" />
+          <img className="ruby-flower ruby-flower-side ruby-flower-side-middle" src={asset('ruby-flower-corner.png')} alt="" />
+          <img className="ruby-flower ruby-flower-side ruby-flower-side-bottom" src={asset('ruby-flower-bottom.png')} alt="" />
+          <img className="ruby-flower ruby-flower-edge ruby-flower-edge-left" src={asset('ruby-flower-corner.png')} alt="" />
+          <img className="ruby-flower ruby-flower-edge ruby-flower-edge-center" src={asset('ruby-flower-side.png')} alt="" />
+          <img className="ruby-flower ruby-flower-edge ruby-flower-edge-right" src={asset('ruby-flower-corner.png')} alt="" />
+          <img className="ruby-flower ruby-flower-fill ruby-flower-fill-one" src={asset('ruby-flower-accent.png')} alt="" />
+          <img className="ruby-flower ruby-flower-fill ruby-flower-fill-two" src={asset('ruby-flower-bottom.png')} alt="" />
+          <img className="ruby-flower ruby-flower-fill ruby-flower-fill-three" src={asset('ruby-flower-corner.png')} alt="" />
+          <img className="ruby-flower ruby-flower-fill ruby-flower-fill-four" src={asset('ruby-flower-accent.png')} alt="" />
         </div>
         <div className="ruby-record-player">
-          <img className="ruby-wordmark" src="/ruby-wordmark.png" alt="Ruby" />
+          <img className="ruby-wordmark" src={asset('ruby-wordmark.png')} alt="Ruby" />
           <a
             className={`vinyl-button${isPlaying ? ' is-playing' : ''}`}
             href="https://music.163.com/#/search/m/?s=JENNIE%20Ruby&type=1"
@@ -88,23 +90,70 @@ function VinylPage() {
 }
 
 function MemoriesPage() {
+  const [previewCard, setPreviewCard] = useState(null);
+  const memoryCards = [
+    { src: asset('memory-double-crown.png'), alt: '双人冠名卡' },
+    { src: asset('memory-invitation.png'), alt: '邀请函' },
+    { src: asset('memory-birthday-letter.png'), alt: '生日信' },
+  ];
+
+  useEffect(() => {
+    if (!previewCard) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setPreviewCard(null);
+    };
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [previewCard]);
+
   return (
     <section className="pink-detail memories-detail" aria-labelledby="memories-heading">
-      <p className="section-kicker">OUR LITTLE ARCHIVE · 01—03</p>
-      <h2 className="detail-title" id="memories-heading">回忆</h2>
-      <p className="section-intro">和你幸福的每一帧都难忘。</p>
+      <img className="memory-cd-frame-art" src={asset('memory-gothic-frame.png')} alt="" aria-hidden="true" />
+      <div className="memory-heading">
+        <h2 className="detail-title" id="memories-heading">和你</h2>
+        <p className="section-intro">和你幸福的每一帧都难忘。</p>
+      </div>
       <div className="memory-grid">
-        {['最喜欢的一张合照', '一个特别的日子', '只有我们懂的瞬间'].map((caption, index) => (
-          <article className={`memory-card memory-card-${index + 1}`} key={caption}>
-            <div className="memory-photo" aria-label={`回忆照片位置 ${index + 1}`}>
-              <span aria-hidden="true">＋</span>
-              <small>照片位置 0{index + 1}</small>
-            </div>
-            <h3>{caption}</h3>
-            <p>等你发照片和一句小注释</p>
+        {memoryCards.map((card, index) => (
+          <article className={`memory-card memory-card-${index + 1}`} key={card.src}>
+            <button
+              className="memory-card-trigger"
+              type="button"
+              onClick={() => setPreviewCard(card)}
+              aria-label={`放大预览：${card.alt}`}
+            >
+              <img className="memory-card-image" src={card.src} alt={card.alt} />
+            </button>
           </article>
         ))}
       </div>
+      {previewCard && (
+        <div
+          className="memory-preview"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${previewCard.alt}图片预览`}
+          onClick={(event) => {
+            if (event.target === event.currentTarget) setPreviewCard(null);
+          }}
+        >
+          <button
+            className="memory-preview-close"
+            type="button"
+            onClick={() => setPreviewCard(null)}
+            aria-label="关闭图片预览"
+          >
+            ×
+          </button>
+          <img className="memory-preview-image" src={previewCard.src} alt={previewCard.alt} />
+        </div>
+      )}
     </section>
   );
 }
@@ -114,40 +163,48 @@ function ReasonsPage() {
 
   return (
     <section className="pink-detail reasons-detail" aria-labelledby="reasons-heading">
-      <p className="section-kicker">A LOVE NOTE IN 18 PARTS</p>
-      <h2 className="detail-title" id="reasons-heading">十八</h2>
-      <p className="section-intro">世界不过是一个蓝色的蛋糕，我们会和同样柔软的人越过时间，以火焰相见。</p>
-      <div className="reason-viewer" aria-live="polite">
-        <span className="reason-viewer-number">{String(reasonIndex + 1).padStart(2, '0')}</span>
-        <p className="reason-card-copy">{reasons[reasonIndex]}</p>
-        <span className="reason-card-sparkle" aria-hidden="true">✦</span>
-      </div>
-      <div className="reason-progress" aria-label={`第 ${reasonIndex + 1} 条，共 18 条`}>
-        <span className="reason-progress-count">{String(reasonIndex + 1).padStart(2, '0')}</span>
-        <span className="reason-progress-track" aria-hidden="true">
-          <span style={{ width: `${((reasonIndex + 1) / reasons.length) * 100}%` }} />
-        </span>
-        <span className="reason-progress-total">18</span>
-      </div>
-      <div className="reason-controls">
-        <button
-          type="button"
-          onClick={() => setReasonIndex((index) => Math.max(0, index - 1))}
-          disabled={reasonIndex === 0}
-          aria-label="上一条理由"
-        >
-          <span aria-hidden="true">←</span>
-          上一条
-        </button>
-        <button
-          type="button"
-          onClick={() => setReasonIndex((index) => Math.min(reasons.length - 1, index + 1))}
-          disabled={reasonIndex === reasons.length - 1}
-          aria-label="下一条理由"
-        >
-          下一条
-          <span aria-hidden="true">→</span>
-        </button>
+      <div className="reasons-layout">
+        <div className="reasons-avatar-frame">
+          <img className="reasons-avatar" src={asset('reasons-avatar.jpg')} alt="粉色长发女孩头像" />
+          <img className="reasons-avatar-ornament" src={asset('reasons-avatar-frame.png')} alt="" aria-hidden="true" />
+        </div>
+        <div className="reasons-content">
+          <p className="section-kicker">A LOVE NOTE IN 18 PARTS</p>
+          <h2 className="detail-title" id="reasons-heading">十八</h2>
+          <p className="section-intro">世界不过是一个蓝色的蛋糕，我们会和同样柔软的人越过时间，以火焰相见。</p>
+          <div className="reason-viewer" aria-live="polite">
+            <span className="reason-viewer-number">{String(reasonIndex + 1).padStart(2, '0')}</span>
+            <p className="reason-card-copy">{reasons[reasonIndex]}</p>
+            <span className="reason-card-sparkle" aria-hidden="true">✦</span>
+          </div>
+          <div className="reason-progress" aria-label={`第 ${reasonIndex + 1} 条，共 18 条`}>
+            <span className="reason-progress-count">{String(reasonIndex + 1).padStart(2, '0')}</span>
+            <span className="reason-progress-track" aria-hidden="true">
+              <span style={{ width: `${((reasonIndex + 1) / reasons.length) * 100}%` }} />
+            </span>
+            <span className="reason-progress-total">18</span>
+          </div>
+          <div className="reason-controls">
+            <button
+              type="button"
+              onClick={() => setReasonIndex((index) => Math.max(0, index - 1))}
+              disabled={reasonIndex === 0}
+              aria-label="上一条理由"
+            >
+              <span aria-hidden="true">←</span>
+              上一条
+            </button>
+            <button
+              type="button"
+              onClick={() => setReasonIndex((index) => Math.min(reasons.length - 1, index + 1))}
+              disabled={reasonIndex === reasons.length - 1}
+              aria-label="下一条理由"
+            >
+              下一条
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -176,14 +233,14 @@ function LetterPage() {
                   <path className="envelope-fold-highlight" d="M 0 1 L 49.5 70.5 L 100 1" />
                 </svg>
                 <span className="envelope-copy">Happy Birthday</span>
-                <img className="envelope-wax-seal" src="/cat-wax-seal.png?v=5" alt="" />
+                <img className="envelope-wax-seal" src={`${asset('cat-wax-seal.png')}?v=5`} alt="" />
                 <span className="envelope-hint">Click</span>
               </>
             ) : (
               <>
                 <span className="envelope-postmark" aria-hidden="true">♡　✦　♡</span>
                 <span className="envelope-back-stamp" aria-hidden="true">十八岁<br />生日快乐</span>
-                <img className="envelope-back-seal" src="/cat-wax-seal.png?v=5" alt="" />
+                <img className="envelope-back-seal" src={`${asset('cat-wax-seal.png')}?v=5`} alt="" />
                 <span className="envelope-hint">点击打开信封</span>
               </>
             )}
@@ -205,30 +262,10 @@ function LetterPage() {
   );
 }
 
-function BirthdayCake({ isLit }) {
+function BirthdayCake() {
   return (
-    <div className={`birthday-cake${isLit ? ' is-lit' : ''}`} aria-hidden="true">
-      <div className="cake-candles">
-        {Array.from({ length: 5 }, (_, index) => (
-          <span className={`cake-candle cake-candle-${index + 1}`} key={index}>
-            <i />
-          </span>
-        ))}
-      </div>
-      <div className="cake-tier cake-tier-upper">
-        <span className="cake-age-number">18</span>
-        <span className="cake-pearl cake-pearl-one" />
-        <span className="cake-pearl cake-pearl-two" />
-        <span className="cake-pearl cake-pearl-three" />
-      </div>
-      <div className="cake-tier cake-tier-lower">
-        <span className="cake-flower cake-flower-one">✿</span>
-        <span className="cake-flower cake-flower-two">✿</span>
-        <span className="cake-flower cake-flower-three">✿</span>
-        <span className="cake-pearl cake-pearl-four" />
-        <span className="cake-pearl cake-pearl-five" />
-        <span className="cake-pearl cake-pearl-six" />
-      </div>
+    <div className="birthday-cake" aria-hidden="true">
+      <img className="birthday-cake-image" src={asset('birthday-cake-cutout-hd.png')} alt="" />
     </div>
   );
 }
@@ -342,6 +379,7 @@ function WishesPage() {
       className={`pink-detail wishes-detail${wishCount > 0 ? ' is-candlelit' : ''}`}
       aria-label="生日祝福页面"
     >
+      <img className="wishes-cloud-overlay" src={asset('wishes-cloud-overlay.png')} alt="" aria-hidden="true" />
       <div className="wish-meteors" aria-hidden="true">
         {Array.from({ length: 14 }, (_, index) => (
           <span className={`wish-meteor wish-meteor-${index + 1}`} key={index} />
@@ -349,9 +387,9 @@ function WishesPage() {
       </div>
       <div className="wish-candlelight" aria-hidden="true" />
       <p className="section-kicker">MAKE A WISH · 18</p>
-      <BirthdayCake isLit={wishCount > 0} />
-      <p className="wish-copy" aria-live="polite">
-        {wishCount ? wishes[wishCount - 1] : '点击点亮一份祝福，收下今天的小小好运。'}
+      <BirthdayCake />
+      <p className={`wish-copy${wishCount === 0 ? ' wish-copy-prompt' : ''}`} aria-live="polite">
+        {wishCount ? wishes[wishCount - 1] : 'Click'}
       </p>
       <button
         className="wish-button"
@@ -379,10 +417,81 @@ function App() {
   const [activePage, setActivePage] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
   const [likeBurst, setLikeBurst] = useState(0);
+  const [isBackgroundMusicPlaying, setIsBackgroundMusicPlaying] = useState(false);
+  const [backgroundMusicError, setBackgroundMusicError] = useState(false);
+  const backgroundMusicRef = useRef(null);
+  const backgroundMusicRequestRef = useRef(0);
   const ActivePage = pageComponents[activePage];
 
+  const toggleBackgroundMusic = () => {
+    const audio = backgroundMusicRef.current;
+    if (!audio) return;
+
+    if (!audio.paused) {
+      backgroundMusicRequestRef.current += 1;
+      audio.pause();
+      setIsBackgroundMusicPlaying(false);
+      return;
+    }
+
+    const request = ++backgroundMusicRequestRef.current;
+    audio.volume = 0.28;
+    setIsBackgroundMusicPlaying(true);
+    setBackgroundMusicError(false);
+    try {
+      Promise.resolve(audio.play()).then(() => {
+        if (backgroundMusicRequestRef.current === request && !audio.paused) {
+          setIsBackgroundMusicPlaying(true);
+        }
+      }).catch(() => {
+        if (backgroundMusicRequestRef.current === request) {
+          setIsBackgroundMusicPlaying(false);
+          setBackgroundMusicError(true);
+        }
+      });
+    } catch {
+      if (backgroundMusicRequestRef.current === request) {
+        setIsBackgroundMusicPlaying(false);
+        setBackgroundMusicError(true);
+      }
+    }
+  };
+
   return (
-    <main className="pink-app">
+    <main
+      className="pink-app"
+      style={{
+        '--outer-page-background': `url("${asset('outer-page-background.png')}")`,
+        '--home-background': `url("${asset('home-background.png')}")`,
+        '--letter-stars-background': `url("${asset('letter-stars.png')}")`,
+      }}
+    >
+      <audio
+        ref={backgroundMusicRef}
+        className="background-music-audio"
+        src={asset('trust-me-background.mp3')}
+        loop
+        preload="auto"
+        onError={() => setBackgroundMusicError(true)}
+        onPlay={() => {
+          setIsBackgroundMusicPlaying(true);
+          setBackgroundMusicError(false);
+        }}
+        onPause={() => setIsBackgroundMusicPlaying(false)}
+      />
+      <button
+        className={`background-music-toggle${isBackgroundMusicPlaying ? ' is-playing' : ''}`}
+        type="button"
+        onClick={toggleBackgroundMusic}
+        aria-label={isBackgroundMusicPlaying ? '暂停背景音乐' : '播放背景音乐'}
+        aria-pressed={isBackgroundMusicPlaying}
+      >
+        <span className="background-music-icon" aria-hidden="true">{isBackgroundMusicPlaying ? '♫' : '♪'}</span>
+        <span>{isBackgroundMusicPlaying ? '暂停音乐' : '播放音乐'}</span>
+      </button>
+      {backgroundMusicError && (
+        <span className="background-music-error" role="status">自动播放受限，点击音乐按钮重试</span>
+      )}
       <div className="pink-sparkles" aria-hidden="true">
         <span>✦</span>
         <span>✧</span>
@@ -391,7 +500,7 @@ function App() {
         <span>·</span>
       </div>
       {activePage ? (
-        <div className={`pink-page-shell${activePage === 'ruby' ? ' ruby-page-shell' : ''}${activePage === 'letter' ? ' letter-page-shell' : ''}${activePage === 'wishes' ? ' wishes-page-shell' : ''}`}>
+        <div className={`pink-page-shell${activePage === 'ruby' ? ' ruby-page-shell' : ''}${activePage === 'letter' ? ' letter-page-shell' : ''}${activePage === 'wishes' ? ' wishes-page-shell' : ''}${activePage === 'memories' ? ' memory-page-shell' : ''}`}>
           <button
             className={`back-home${activePage === 'ruby' ? ' ruby-back-home' : ''}`}
             type="button"
@@ -419,13 +528,11 @@ function App() {
             <span className="ribbon-edge ribbon-edge-right" />
             <span className="ribbon-edge ribbon-edge-bottom" />
             <span className="ribbon-edge ribbon-edge-left" />
-            <img className="ribbon-piece ribbon-piece-tl" src="/ribbon-corner-tl.png" alt="" />
-            <img className="ribbon-piece ribbon-piece-tr" src="/ribbon-corner-tr.png" alt="" />
-            <img className="ribbon-piece ribbon-piece-bow" src="/ribbon-bow.png" alt="" />
-            <img className="ribbon-piece ribbon-piece-streamer" src="/ribbon-streamer.png" alt="" />
+            <img className="frame-bow frame-bow-corner" src={asset('ribbon-corner-tl.png')} alt="" />
+            <img className="frame-bow frame-bow-right" src={asset('ribbon-corner-tl-mirrored.png')} alt="" />
           </div>
           <div className="mascot-row">
-            <img className="mascot-sticker" src="/pochacco-sticker.png" alt="" />
+            <img className="mascot-sticker" src={asset('pochacco-sticker.png')} alt="" />
             <span className="mascot-like-area">
               <button
                 className={`mascot-heart${isLiked ? ' is-liked' : ''}`}
@@ -456,40 +563,11 @@ function App() {
           <div className="cover-heading">
             <p className="home-eyebrow">THE BIRTHDAY EDITION <span>·</span> NO. 18</p>
             <div className="cover-name-ribbon">
-              <h1 className="home-title" id="home-heading">To Janice<img className="title-crown" src="/birthday-crown.png" alt="" aria-hidden="true" /></h1>
+              <h1 className="home-title" id="home-heading" aria-label="To Janice">To Janic<span className="title-final-letter">e<span className="wind-chime-flower-anchor wind-chime-photo-anchor">
+                <img className="wind-chime-watermist" src={asset('wind-chime-watermist-cluster.png')} alt="" aria-hidden="true" />
+              </span></span><img className="title-crown" src={asset('birthday-crown.png')} alt="" aria-hidden="true" /></h1>
               <span className="title-ribbon" aria-hidden="true">
-                <svg className="title-ribbon-bow" viewBox="0 0 64 58">
-                  <defs>
-                    <linearGradient id="title-bow-satin" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0" stopColor="#fffafd" />
-                      <stop offset=".28" stopColor="#f7d4df" />
-                      <stop offset=".55" stopColor="#e99bb2" />
-                      <stop offset=".78" stopColor="#f6dce4" />
-                      <stop offset="1" stopColor="#d9839e" />
-                    </linearGradient>
-                    <linearGradient id="title-bow-shine" x1="0" y1="0" x2="1" y2="0">
-                      <stop offset="0" stopColor="#fff" stopOpacity=".82" />
-                      <stop offset=".48" stopColor="#fff" stopOpacity=".12" />
-                      <stop offset="1" stopColor="#fff" stopOpacity=".7" />
-                    </linearGradient>
-                  </defs>
-                  <path d="M29 15C22 13 15 7 10 8 5 9 7 16 13 19 18 22 24 19 29 15ZM26 15C21 14 15 10 11 10 9 11 10 14 14 17 18 19 23 17 26 15ZM35 15C42 13 49 7 54 8 59 9 57 16 51 19 46 22 40 19 35 15ZM38 15C43 14 49 10 53 10 55 11 54 14 50 17 46 19 41 17 38 15Z"
-                    fill="url(#title-bow-satin)" fillRule="evenodd" stroke="#d887a0" strokeWidth="1" />
-                  <path d="M29 19C28 27 27 37 28 52"
-                    fill="none" stroke="#cf7893" strokeWidth="4.2" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M29 19C28 27 27 37 28 52"
-                    fill="none" stroke="url(#title-bow-satin)" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M35 19C36 27 37 37 36 52"
-                    fill="none" stroke="#cf7893" strokeWidth="4.2" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M35 19C36 27 37 37 36 52"
-                    fill="none" stroke="url(#title-bow-satin)" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M27 28C26 35 27 43 27 48M37 28C38 35 37 43 37 48"
-                    fill="none" stroke="url(#title-bow-shine)" strokeWidth=".8" strokeLinecap="round" />
-                  <path d="M29 13C27 10 27 7 30 6 33 5 35 8 33 11L31 14M35 13C37 10 37 7 34 6"
-                    fill="none" stroke="url(#title-bow-satin)" strokeWidth="4.5" strokeLinecap="round" />
-                  <ellipse cx="32" cy="20" rx="4" ry="3.5" fill="url(#title-bow-satin)" stroke="#fff" strokeOpacity=".8" strokeWidth=".8" />
-                  <path d="M30 19.5Q32 18 34 19.5" fill="none" stroke="#fff" strokeOpacity=".85" strokeWidth=".8" strokeLinecap="round" />
-                </svg>
+                <img className="title-ribbon-bow" src={asset('ribbon-bow.png')} alt="" />
               </span>
             </div>
             <p className="cover-date">
