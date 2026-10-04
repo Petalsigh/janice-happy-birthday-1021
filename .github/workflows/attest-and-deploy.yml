@@ -42,7 +42,7 @@ jobs:
         run: npm run build
         env:
           VITE_ENABLE_DATA_HYDRATION: 'true'
-          VITE_BASE_PATH: '/task-dashboard/'
+          VITE_BASE_PATH: '/janice-happy-birthday-1021/'
 
       # Package the build into a tarball so it can be easily verified
       - name: Package the build
