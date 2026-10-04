@@ -9,6 +9,11 @@ export default defineConfig({
     react(),
     tailwindcss(), // Add the Tailwind CSS Vite plugin
   ],
+  build: {
+    rollupOptions: {
+      input: { main: 'index.html', timetable: 'timetable.html' },
+    },
+  },
   ssr: {
     noExternal: ['@tailwindcss/vite']
   },
